@@ -14,7 +14,6 @@ public class user {
     private double dealamount;
     private int dealnum;
     private char dataid;
-
     public char getHousetext() {
         return housetext;
     }
