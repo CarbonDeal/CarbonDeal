@@ -1,6 +1,6 @@
 package com.springboot.backend.controller;
 import  com.springboot.backend.service.service;
-import com.springboot.backend.bean.user;
+import com.springboot.backend.bean.DealInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,22 +14,22 @@ public class controller {
     private service userService;
 
     @RequestMapping("/add")
-    public void addNews(user dataid){
+    public void addNews(DealInfo dataid){
         userService.addDeal(dataid);
     }
 
     @RequestMapping("/getList")
-    public List<user> getAllUser(){
+    public List<DealInfo> getAllUser(){
         return userService.findAll();
     }
 
     @RequestMapping("/update/{dataid}")
-    public void updateNews(user dataid){
+    public void updateNews(DealInfo dataid){
         userService.updateDeal(dataid);
     }
 
     @RequestMapping("/delete/{dataid}")
-    public void deleteNews(user dataid){
+    public void deleteNews(DealInfo dataid){
          userService.deleteDeal(dataid);
     }
 }

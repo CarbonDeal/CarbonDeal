@@ -1,10 +1,10 @@
 package com.springboot.backend.service;
 
 import java.util.List;
-import com.springboot.backend.bean.user;
+import com.springboot.backend.bean.DealInfo;
 public interface service {
-     List<user> findAll();
-     void addDeal(user dataid);
-     void deleteDeal(user dataid);
-     void updateDeal(user dataid);
+     List<DealInfo> findAll();
+     void addDeal(DealInfo dataid);
+     void deleteDeal(DealInfo dataid);
+     void updateDeal(DealInfo dataid);
 }
