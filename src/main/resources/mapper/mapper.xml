@@ -1,45 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.springboot.backend.dao.mapper">
-    <select id="findAll" resultType="com.springboot.backend.dao">
-        select * from data
+    <select id="findAll" resultType="com.springboot.backend.bean.DealInfo">
+        select * from database
     </select>
-
-    <insert id="addDeal" parameterType="com.springboot.backend.dao">
-        insert into data (dataid)
-        values (#{housetext,jdbcType=char},
-        #{subTypeName,jdbcType=char},
-        #{indate,jdbcType=datetime},
-        #{open,jdbcType=double},
-        #{high,jdbcType=double},
-         #{low,jdbcType=double},
-         #{average,jdbcType=double},
-         #{close,jdbcType=double},
-         #{deal,jdbcType=double},
-        #{dataid,jdbcType=char},
-        #{dealamount,jdbcType=double},
-        #{dealnum,jdbcType=int},)
+<select id="findGuiHua" resultType="com.springboot.backend.bean.GuiHuaNews">
+    select * from GuiHuanews
+</select>
+    <select id="findJinRong"
+    <insert id="addDeal" parameterType="com.springboot.backend.bean.DealInfo">
+        insert into datanase (dataid)
+        values (#{housetext,jdbcType=CHAR},
+        #{subTypeName,jdbcType=CHAR},
+        #{indate,jdbcType=DATE}
+        #{open,jdbcType=DOUBLE},
+        #{high,jdbcType=DOUBLE},
+         #{low,jdbcType=DOUBLE},
+         #{average,jdbcType=DOUBLE},
+         #{close,jdbcType=DOUBLE},
+         #{deal,jdbcType=DOUBLE},
+        #{dataid,jdbcType=CHAR},
+        #{dealamount,jdbcType=DOUBLE},
+        #{dealnum,jdbcType=CHAR})
     </insert>
 
-    <update id="updateDeal" parameterType="com.springboot.backend.dao">
+    <update id="updateDeal" parameterType="com.springboot.backend.bean.DealInfo">
         update user set
-        housetext=#{housetext,jdbcType=char},
-         subTypeName=#{subTypeName,jdbcType=char},
-         indate=#{indate,jdbcType=datetime},
-         open=#{open,jdbcType=double},
-         high=#{high,jdbcType=double},
-         low=#{low,jdbcType=double},
-         average=#{average,jdbcType=double},
-         close=#{close,jdbcType=double},
-         deal=#{deal,jdbcType=double},
-        dataid= #{dataid,jdbcType=char},
-        dealamount = #{dealamount,jdbcType=double},
-        dealnum=#{dealnum,jdbcType=int},
+        housetext=#{housetext,jdbcType=CHAR},
+         subTypeName=#{subTypeName,jdbcType=CHAR},
+         indate=#{indate,jdbcType=DATE},
+         open=#{open,jdbcType=DOUBLE},
+         high=#{high,jdbcType=DOUBLE},
+         low=#{low,jdbcType=DOUBLE},
+         average=#{average,jdbcType=DOUBLE},
+         close=#{close,jdbcType=DOUBLE},
+         deal=#{deal,jdbcType=DOUBLE},
+        dataid= #{dataid,jdbcType=CHAR},
+        dealamount = #{dealamount,jdbcType=DOUBLE},
+        dealnum=#{dealnum,jdbcType=INTEGER},
 
-        where dataid= #{id,jdbcType=char}
+        where dataid= #{id,jdbcType=CHAR}
     </update>
 
     <delete id="deleteDeal" parameterType="java.lang.Integer">
-        delete from data where dataid= #{dataid,jdbcType=char}
+        delete from database where dataid= #{dataid,jdbcType=CHAR}
     </delete>
 </mapper>
