@@ -1,119 +1,104 @@
 package com.springboot.backend.controller;
 
-import com.springboot.backend.bean.CAQuaryResult;
-import com.springboot.backend.bean.DealInfo;
-import com.springboot.backend.bean.DealNum;
+import com.springboot.backend.bean.*;
 import com.springboot.backend.service.service;
 import com.springboot.backend.service.serviceImpl;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import  com.springboot.backend.service.service;
-import com.springboot.backend.bean.DealInfo;
-import  com.springboot.backend.bean.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import com.springboot.backend.dao.mapper;
-import sun.misc.Contended;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
-@Controller
+@ResponseBody
 public class controller {
 
-    @Autowired
-    private service userService;
 
+    @Autowired(required = false)
+    private service userService;
+    @RequestMapping("/getLineChartData")
+    public String getLineChartData() throws JSONException{
+        serviceImpl serviceImpl = new serviceImpl();
+        List<LineChart> listBeiJing =serviceImpl.getLineChartData("北京");
+        List<LineChart> listShangHai =serviceImpl.getLineChartData("上海");
+        List<LineChart> listGuangDong =serviceImpl.getLineChartData("广东");
+        List<LineChart> listTianJin =serviceImpl.getLineChartData("天津");
+        List<LineChart> listShenZhen =serviceImpl.getLineChartData("深圳");
+        List<LineChart> listHuBei =serviceImpl.getLineChartData("湖北");
+        List<LineChart> listChongQing =serviceImpl.getLineChartData("重庆");
+        List<LineChart> listFuJian =serviceImpl.getLineChartData("福建");
+        JSONObject object=new JSONObject();
+        object.put("BeiJingLineChart",listBeiJing);
+        object.put("ShangHaiLineChart",listShangHai);
+        object.put("GuangDongLineChart",listGuangDong);
+        object.put("TianJinLineChart",listTianJin);
+        object.put("ShenZhenLineChart",listShenZhen);
+        object.put("HuBeiLineChart",listHuBei);
+        object.put("ChongQingLineChart",listChongQing);
+        object.put("FuJianLineChart",listFuJian);
+        return object.toString();
+    }
     /**
      * 注册
+     *
      * @param user 参数封装
      * @return Result
      */
     @PostMapping(value = "/regist")
-    public Result regist(User user){
+    public UserResult regist(User user) {
         return userService.regist(user);
     }
+
     /**
      * 登录
+     *
      * @param user 参数封装
      * @return Result
      */
     @PostMapping(value = "/login")
-    public Result login(User user){
+    public UserResult login(User user) {
         return userService.login(user);
     }
 
+@RequestMapping("/hello")
+public String hello(){
+        return "hello";
 }
-    @RequestMapping("/add")
-    public void addNews(DealInfo dataid){
-        userService.addDeal(dataid);
+    @RequestMapping("/getList")
+    public List<DealInfo> getAllUser() {
+        return userService.findAllDeal();
     }
 
-    @RequestMapping(value = "/findAll")
-    public List<DealInfo> getAllUser(){
-        return  userService.findAll();
-public class controller {
-
-    @Autowired(required = false)
-    private service userService;
-
-    @RequestMapping("/add")
-    public void addNews(DealInfo dataid){
-        userService.addDeal(dataid);
-    }
-
-//返回交易量
-@RequestMapping(value="/getcarbonTradingNumberChartData",method = RequestMethod.POST)
+    //返回交易量
+    @RequestMapping(value = "/getcarbonTradingNumberChartData", method = RequestMethod.POST)
     public String getcarbonTradingNumberChartData() throws JSONException {
         JSONObject object = new JSONObject();
         serviceImpl serviceImpl = new serviceImpl();
         List<DealNum> dealNums = serviceImpl.getcarbonTradingNumberByCity();
         //["湖北","上海","北京","重庆","广东","天津","深圳","福建"]
-        object.put("carbonTradingNumberPiedata",dealNums);
+        object.put("carbonTradingNumberPiedata", dealNums);
         return object.toString();
     }
+
     //返回交易额
     @RequestMapping("/getcarbonTradingeAmountChartData")
     public String getcarbonTradingeAmountChartData() throws JSONException {
-        List<CAQuaryResult>  results = userService.getcarbonTradingeAmountChartData();
+        List<CAQuaryResult> results = userService.getcarbonTradingeAmountChartData();
         JSONObject object = new JSONObject();
-        Integer totalAmount=0;
-        for(int i=0;i<8;i++)
-        {   CAQuaryResult a = results.get(i);
+        Integer totalAmount = 0;
+        for (int i = 0; i < 8; i++) {
+            CAQuaryResult a = results.get(i);
             totalAmount += a.getValue();
         }
-        for (int i=0;i<8;i++)
-        {   CAQuaryResult a = results.get(i);
+        for (int i = 0; i < 8; i++) {
+            CAQuaryResult a = results.get(i);
             Double rate = (double) (a.getValue() / totalAmount);
             a.setRate(rate);
         }
         object.put("carbonTradingAmountPiedata", results);
         return object.toString();
-
-
     }
 
-
-
-    @RequestMapping("/getList")
-    public List<DealInfo> getAllUser(){
-        return userService.findAll();
-    }
-
-    @RequestMapping("/update/{dataid}")
-    public void updateNews(DealInfo dataid){
-        userService.updateDeal(dataid);
-    }
-
-    @RequestMapping("/delete/{dataid}")
-    public void deleteNews(DealInfo dataid){
-         userService.deleteDeal(dataid);
-    }
 }

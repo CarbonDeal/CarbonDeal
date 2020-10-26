@@ -3,77 +3,41 @@
 <mapper namespace="com.springboot.backend.dao.mapper">
 
 
-    <select id="findAllDeal" resultType="com.springboot.backend.DealInfo">
-        select * from dealinfo;
+    <select id="findAllDeal" resultType="com.springboot.backend.bean.DealInfo">
+        select * from DealInfo;
     </select>
-    <select id="findAllDealNum" resultType="com.springboot.backend.DealNum">
-        select housetext as city,sum(dealnum) as value from dealinfo groupby housetext;
+    <select id="findAllDealNum" resultType="com.springboot.backend.bean.DealNum">
+        select housetext as city,sum(dealnum) as value from DealInfo groupby housetext;
     </select>
 
     <select id="getcarbonTradingeAmountChartData" resultType="com.springboot.backend.bean.CAQuaryResult">
         select housetext as city,sum(dealamount) as value
-        from data.database
+        from data.DealInfo
         group by housetext;
     </select>
 
 
-    <select id="findAllGHN" resultType="com.springboot.backend.GuiHuaNews">
-        select * from guihuanews;
+    <select id="findAllGHN" resultType="com.springboot.backend.bean.GuiHuaNews">
+        select * from GuiHuaNews;
     </select>
 
-    <select id="findAllJRN" resultType="com.springboot.backend.JinRongNews">
-        select * from jinrongnews;
+    <select id="findAllJRN" resultType="com.springboot.backend.bean.JinRongNews">
+        select * from JinRongNews;
     </select>
 
-    <select id="findAllTJY" resultType="com.springboot.backend.TanJiaoYi">
-        select * from tanjiaoyi;
+    <select id="findAllTJY" resultType="com.springboot.backend.bean.TanJiaoYi">
+        select * from TanJiaoYi;
     </select>
 
-    <select id="findAllTQQ" resultType="com.springboot.backend.TanQiQuan">
-        select * from tanqiquan;
+    <select id="findAllTQQ" resultType="com.springboot.backend.bean.TanQiQuan">
+        select * from TanQiQuan;
     </select>
 
-    <select id="findAllZCFG" resultType="com.springboot.backend.ZhengCeFaGui">
-        select * from zhengcefagui;
+    <select id="findAllZCFG" resultType="com.springboot.backend.bean.ZhengCeFaGui">
+        select * from ZhengCeFaGui;
     </select>
 
-    <insert id="addDeal" parameterType="com.springboot.backend.DealInfo">
-        insert into database (dataid)
-        values (#{housetext,jdbcType=char},
-        #{subTypeName,jdbcType=char},
-        #{indate,jdbcType=datetime},
-        #{open,jdbcType=double},
-        #{high,jdbcType=double},
-         #{low,jdbcType=double},
-         #{average,jdbcType=double},
-         #{close,jdbcType=double},
-         #{deal,jdbcType=double},
-        #{dataid,jdbcType=char},
-        #{dealamount,jdbcType=double},
-        #{dealnum,jdbcType=int},)
-    </insert>
 
-    <update id="updateDeal" parameterType="com.springboot.backend.DealInfo">
-        update user set
-        housetext=#{housetext,jdbcType=char},
-         subTypeName=#{subTypeName,jdbcType=char},
-         indate=#{indate,jdbcType=datetime},
-         open=#{open,jdbcType=double},
-         high=#{high,jdbcType=double},
-         low=#{low,jdbcType=double},
-         average=#{average,jdbcType=double},
-         close=#{close,jdbcType=double},
-         deal=#{deal,jdbcType=double},
-        dataid= #{dataid,jdbcType=char},
-        dealamount = #{dealamount,jdbcType=double},
-        dealnum=#{dealnum,jdbcType=int},
-
-        where dataid= #{id,jdbcType=char}
-    </update>
-
-    <delete id="deleteDeal" parameterType="java.lang.Integer">
-        delete from database where dataid= #{dataid,jdbcType=char}
-    </delete>
 
 
 </mapper>

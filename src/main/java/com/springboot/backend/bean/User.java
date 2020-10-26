@@ -2,7 +2,7 @@ package com.springboot.backend.bean;
 
 public class User {
     private String UserName;
-    private Integer   UserId;
+    private Long   UserId;
     private  String password;
 
     public String getUserName() {
@@ -13,11 +13,11 @@ public class User {
         UserName = userName;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return UserId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         UserId = userId;
     }
 
