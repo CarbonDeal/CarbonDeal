@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -16,19 +17,19 @@ import java.util.List;
 public class controller {
 
 
-    @Autowired(required = false)
-    private service userService;
+    @Resource
+    private serviceImpl userService;
     @RequestMapping("/getLineChartData")
     public String getLineChartData() throws JSONException{
-        serviceImpl serviceImpl = new serviceImpl();
-        List<LineChart> listBeiJing =serviceImpl.getLineChartData("北京");
-        List<LineChart> listShangHai =serviceImpl.getLineChartData("上海");
-        List<LineChart> listGuangDong =serviceImpl.getLineChartData("广东");
-        List<LineChart> listTianJin =serviceImpl.getLineChartData("天津");
-        List<LineChart> listShenZhen =serviceImpl.getLineChartData("深圳");
-        List<LineChart> listHuBei =serviceImpl.getLineChartData("湖北");
-        List<LineChart> listChongQing =serviceImpl.getLineChartData("重庆");
-        List<LineChart> listFuJian =serviceImpl.getLineChartData("福建");
+
+        List<LineChart> listBeiJing =userService.getLineChartData("北京");
+        List<LineChart> listShangHai =userService.getLineChartData("上海");
+        List<LineChart> listGuangDong =userService.getLineChartData("广东");
+        List<LineChart> listTianJin =userService.getLineChartData("天津");
+        List<LineChart> listShenZhen =userService.getLineChartData("深圳");
+        List<LineChart> listHuBei =userService.getLineChartData("湖北");
+        List<LineChart> listChongQing =userService.getLineChartData("重庆");
+        List<LineChart> listFuJian =userService.getLineChartData("福建");
         JSONObject object=new JSONObject();
         object.put("BeiJingLineChart",listBeiJing);
         object.put("ShangHaiLineChart",listShangHai);
@@ -72,11 +73,11 @@ public String hello(){
     }
 
     //返回交易量
-    @RequestMapping(value = "/getcarbonTradingNumberChartData", method = RequestMethod.POST)
+    @RequestMapping(value = "/getcarbonTradingeNumberChartData", method = RequestMethod.POST)
     public String getcarbonTradingNumberChartData() throws JSONException {
         JSONObject object = new JSONObject();
-        serviceImpl serviceImpl = new serviceImpl();
-        List<DealNum> dealNums = serviceImpl.getcarbonTradingNumberByCity();
+
+        List<DealNum> dealNums = userService.getcarbonTradingNumberByCity();
         //["湖北","上海","北京","重庆","广东","天津","深圳","福建"]
         object.put("carbonTradingNumberPiedata", dealNums);
         return object.toString();

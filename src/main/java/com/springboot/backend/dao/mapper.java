@@ -2,11 +2,15 @@ package com.springboot.backend.dao;
 
 import com.springboot.backend.bean.*;
 import org.apache.ibatis.annotations.*;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Mapper
 @Repository
+@ComponentScan
+@Service
 public interface mapper {
     List<DealInfo> findAllDeal();
     List<DealNum> findDealNum();

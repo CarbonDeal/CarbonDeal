@@ -6,8 +6,8 @@
     <select id="findAllDeal" resultType="com.springboot.backend.bean.DealInfo">
         select * from DealInfo;
     </select>
-    <select id="findAllDealNum" resultType="com.springboot.backend.bean.DealNum">
-        select housetext as city,sum(dealnum) as value from DealInfo groupby housetext;
+    <select id="findDealNum" resultType="com.springboot.backend.bean.DealNum">
+        select housetext as city,sum(dealnum) as value from DealInfo group by housetext;
     </select>
 
     <select id="getcarbonTradingeAmountChartData" resultType="com.springboot.backend.bean.CAQuaryResult">
