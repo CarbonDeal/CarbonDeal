@@ -18,7 +18,28 @@ public class controller {
 
     @Autowired(required = false)
     private service userService;
-
+    @RequestMapping("/getLineChartData")
+    public String getLineChartData() throws JSONException{
+        serviceImpl serviceImpl = new serviceImpl();
+        List<LineChart> listBeiJing =serviceImpl.getLineChartData("北京");
+        List<LineChart> listShangHai =serviceImpl.getLineChartData("上海");
+        List<LineChart> listGuangDong =serviceImpl.getLineChartData("广东");
+        List<LineChart> listTianJin =serviceImpl.getLineChartData("天津");
+        List<LineChart> listShenZhen =serviceImpl.getLineChartData("深圳");
+        List<LineChart> listHuBei =serviceImpl.getLineChartData("湖北");
+        List<LineChart> listChongQing =serviceImpl.getLineChartData("重庆");
+        List<LineChart> listFuJian =serviceImpl.getLineChartData("福建");
+        JSONObject object=new JSONObject();
+        object.put("BeiJingLineChart",listBeiJing);
+        object.put("ShangHaiLineChart",listShangHai);
+        object.put("GuangDongLineChart",listGuangDong);
+        object.put("TianJinLineChart",listTianJin);
+        object.put("ShenZhenLineChart",listShenZhen);
+        object.put("HuBeiLineChart",listHuBei);
+        object.put("ChongQingLineChart",listChongQing);
+        object.put("FuJianLineChart",listFuJian);
+        return object.toString();
+    }
     /**
      * 注册
      *

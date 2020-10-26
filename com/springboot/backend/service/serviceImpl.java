@@ -15,7 +15,9 @@ public class serviceImpl implements service{
     }
     @Autowired
     public mapper mapper;
-
+    public List<LineChart> getLineChartData(String city){
+        return mapper.getLineChartData(city);
+    }
     @Override
     public List<DealInfo> findAllDeal() {
         List<DealInfo> dealInfoList=mapper.findAllDeal();

@@ -28,6 +28,8 @@ public interface mapper {
 //    void deleteTJY(TanJiaoYiNews dataid);
 //    void deleteTQQ(TanQiQuanNews dataid);
 //    void deleteZCFG(ZhengCeFaGuiNews dataid);
+@Select("select indate ,SUM(dealamount)/SUM(dealnum), SUM(dealnum) from data.dealinfo where housetext=#{city} GROUP BY indate")
+List<LineChart> getLineChartData(@Param("city") String city);
     void updateDeal(DealInfo dataid);
     /**
      * 注册  插入一条user记录
