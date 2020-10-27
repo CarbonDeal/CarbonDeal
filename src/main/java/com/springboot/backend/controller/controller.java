@@ -26,7 +26,8 @@ public class controller {
         List<LineChart> listShangHai =userService.getLineChartData("上海");
         List<LineChart> listGuangDong =userService.getLineChartData("广东");
         List<LineChart> listTianJin =userService.getLineChartData("天津");
-        List<LineChart> listShenZhen =userService.getLineChartData("深圳");
+
+        List<LineChart> listShenZhen =userService.getLineChartDatashenzhen("深圳");
         List<LineChart> listHuBei =userService.getLineChartData("湖北");
         List<LineChart> listChongQing =userService.getLineChartData("重庆");
         List<LineChart> listFuJian =userService.getLineChartData("福建");

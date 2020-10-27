@@ -13,6 +13,7 @@ import java.util.List;
 public interface service {
      List<DealInfo> findAllDeal();
      List<LineChart> getLineChartData(String city);
+     List<LineChart> getLineChartDatashenzhen(String city);
      void addDeal(DealInfo dataid);
      void deleteDeal(DealInfo dataid);
      void updateDeal(DealInfo dataid);

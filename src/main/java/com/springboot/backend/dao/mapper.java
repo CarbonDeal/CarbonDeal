@@ -32,7 +32,9 @@ public interface mapper {
 //    void deleteTJY(TanJiaoYiNews dataid);
 //    void deleteTQQ(TanQiQuanNews dataid);
 //    void deleteZCFG(ZhengCeFaGuiNews dataid);
-@Select("select indate ,SUM(dealamount)/SUM(dealnum) as deal, SUM(dealnum) as dealnum from data.dealinfo where housetext=#{city} GROUP BY indate")
+@Select("select indate ,ifnull(SUM(dealamount)/SUM(dealnum),0) as deal, ifnull(SUM(dealnum),0) as dealnum from data.dealinfo where housetext=#{city} GROUP BY indate")
+List<LineChart> getLineChartDatashenzhen(@Param("city") String city);
+@Select("select indate , deal, dealnum from data.dealinfo where housetext=#{city} ")
 List<LineChart> getLineChartData(@Param("city") String city);
     void updateDeal(DealInfo dataid);
     /**

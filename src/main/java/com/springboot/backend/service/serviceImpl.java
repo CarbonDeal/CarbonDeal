@@ -20,6 +20,12 @@ public class serviceImpl implements service{
     public List<LineChart> getLineChartData(String city){
         return mapper.getLineChartData(city);
     }
+
+    @Override
+    public List<LineChart> getLineChartDatashenzhen(String city) {
+        return mapper.getLineChartDatashenzhen(city);
+    }
+
     @Override
     public List<DealInfo> findAllDeal() {
         List<DealInfo> dealInfoList=mapper.findAllDeal();

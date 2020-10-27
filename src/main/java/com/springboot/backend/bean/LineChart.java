@@ -28,12 +28,20 @@ public class LineChart {
     public void setDeal(Double deal) {
         this.deal = deal;
     }
+//    @Override
+//    public String toString() {
+//        return "{" +
+//                "indate:'" + indate + '\'' +
+//                ", deal:'" + deal + '\'' +
+//                ", dealnum:'" + dealnum + '\'' +
+//                '}';
+//    }
     @Override
     public String toString() {
-        return "{" +
-                "indate='" + indate + '\'' +
-                ", deal='" + deal + '\'' +
-                ", dealnum='" + dealnum + '\'' +
-                '}';
+        return "[" +
+                 indate + "," +
+                deal +
+
+                ']';
     }
 }
