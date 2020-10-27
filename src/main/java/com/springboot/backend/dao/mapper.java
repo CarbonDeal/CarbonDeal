@@ -43,7 +43,7 @@ List<LineChart> getLineChartData(@Param("city") String city);
      * @return
      */
 
-    @Insert("insert into user(userId,username,password) values(#{userId},#{username},#{password})")
+//    @Insert("insert into user(userId,username,password) values(#{userId},#{username},#{password})")
     //加入该注解可以保存对象后，查看对象插入id
     @Options(useGeneratedKeys = true,keyProperty = "userId",keyColumn = "userId")
     void regist(User user);
@@ -53,7 +53,7 @@ List<LineChart> getLineChartData(@Param("city") String city);
      * @param user
      * @return
      */
-    @Select("select user.userId from user u where user.username = #{username} and password = #{password}")
+//    @Select("select user.userId from user u where user.username = #{username} and password = #{password}")
     Integer login(User user);
 
     @Select(value = "select u.username,u.password from user u where u.username=#{username}")

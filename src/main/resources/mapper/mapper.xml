@@ -15,7 +15,16 @@
         from data.DealInfo
         group by housetext;
     </select>
-
+    <select id="login" parameterType="com.springboot.backend.bean.User" resultType="java.lang.Integer">
+        select user.userId
+        from user
+        where username = #{username}
+          and password = #{password}
+    </select>
+    <select id="regist" parameterType="com.springboot.backend.bean.User" >
+        insert into user(userId,username,password)
+        values(#{userId},#{username},#{password})
+    </select>
 
     <select id="findAllGHN" resultType="com.springboot.backend.bean.GuiHuaNews">
         select * from GuiHuaNews;
