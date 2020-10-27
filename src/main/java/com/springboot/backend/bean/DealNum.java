@@ -1,8 +1,8 @@
 package com.springboot.backend.bean;
 
 public class DealNum {
-    private String city;
     private Integer value;
+    private String city;
     private Double rate;
     public String getCity() {
         return city;

@@ -74,18 +74,18 @@ public String hello(){
 
     //返回交易量
     @RequestMapping(value = "/getcarbonTradingeNumberChartData", method = RequestMethod.POST)
-    public String getcarbonTradingNumberChartData() throws JSONException {
+    public List<DealNum> getcarbonTradingNumberChartData() throws JSONException {
         JSONObject object = new JSONObject();
 
         List<DealNum> dealNums = userService.getcarbonTradingNumberByCity();
         //["湖北","上海","北京","重庆","广东","天津","深圳","福建"]
         object.put("carbonTradingNumberPiedata", dealNums);
-        return object.toString();
+        return dealNums;
     }
 
     //返回交易额
     @RequestMapping("/getcarbonTradingeAmountChartData")
-    public String getcarbonTradingeAmountChartData() throws JSONException {
+    public List<CAQuaryResult> getcarbonTradingeAmountChartData() throws JSONException {
         List<CAQuaryResult> results = userService.getcarbonTradingeAmountChartData();
         JSONObject object = new JSONObject();
         Integer totalAmount = 0;
@@ -99,7 +99,7 @@ public String hello(){
             a.setRate(rate);
         }
         object.put("carbonTradingAmountPiedata", results);
-        return object.toString();
+        return results;
     }
 
 }

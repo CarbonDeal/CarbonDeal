@@ -1,7 +1,7 @@
 package com.springboot.backend.bean;
 
 public class LineChart {
-    private String  city;
+    private String  indate;
     private Double deal;
     private Integer dealnum;
 
@@ -13,12 +13,12 @@ public class LineChart {
         this.dealnum = dealnum;
     }
 
-    public String getCity() {
-        return city;
+    public String getIndate() {
+        return indate;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setIndate(String indate) {
+        this.indate = indate;
     }
 
     public Double getDeal() {
@@ -27,5 +27,13 @@ public class LineChart {
 
     public void setDeal(Double deal) {
         this.deal = deal;
+    }
+    @Override
+    public String toString() {
+        return "{" +
+                "indate='" + indate + '\'' +
+                ", deal='" + deal + '\'' +
+                ", dealnum='" + dealnum + '\'' +
+                '}';
     }
 }
