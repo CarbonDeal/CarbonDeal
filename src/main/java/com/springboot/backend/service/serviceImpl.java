@@ -100,7 +100,7 @@ public class serviceImpl implements service{
         result.setSuccess(false);
         result.setDetail(null);
         try {
-            User existUser = mapper.findUserByName(user.getUserName());
+            User existUser = mapper.findUserByName(user.getUsername());
             if(existUser != null){
                 //如果用户名已存在
                 result.setMsg("用户名已存在");

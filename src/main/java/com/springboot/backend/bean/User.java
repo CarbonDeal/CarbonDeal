@@ -1,24 +1,24 @@
 package com.springboot.backend.bean;
 
 public class User {
-    private String UserName;
-    private Long   UserId;
+    private String username;
+    private Long   userId;
     private  String password;
 
-    public String getUserName() {
-        return UserName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        UserName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(Long userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
     public String getPassword() {

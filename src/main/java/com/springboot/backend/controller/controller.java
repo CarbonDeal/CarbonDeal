@@ -49,7 +49,7 @@ public class controller {
      * @return Result
      */
     @PostMapping(value = "/regist")
-    public UserResult regist(User user) {
+    public UserResult regist(@RequestBody User user) {
         return userService.regist(user);
     }
 
@@ -60,7 +60,7 @@ public class controller {
      * @return Result
      */
     @PostMapping(value = "/login")
-    public UserResult login(User user) {
+    public UserResult login(@RequestBody User user) {
         return userService.login(user);
     }
 
