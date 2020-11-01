@@ -16,6 +16,7 @@
         group by housetext;
     </select>
 
+
     <select id="findAllGHN" resultType="com.springboot.backend.bean.GuiHuaNews">
         select * from GuiHuaNews;
     </select>
