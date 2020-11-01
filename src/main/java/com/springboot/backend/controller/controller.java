@@ -1,11 +1,9 @@
 package com.springboot.backend.controller;
 
 import com.springboot.backend.bean.*;
-import com.springboot.backend.service.service;
 import com.springboot.backend.service.serviceImpl;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -44,18 +42,34 @@ public class controller {
     }
     /**
      * 注册
-     *
+     * 默认激活状态为0,生成激活码并发送邮件
      * @param user 参数封装
      * @return Result
      */
     @PostMapping(value = "/regist")
     public UserResult regist(@RequestBody User user) {
+        user.setActive_status(0);
+        String activeCode = IDUtils.getUUID();
+        user.setActive_code(activeCode);
         return userService.regist(user);
     }
 
+    @RequestMapping(value = "/checkCode")
+    public String CheckCode(String code){
+        User user = userService.getUserByActiveCode(code);
+        //如果用户不等于null，把用户状态修改status=1
+        if (user !=null){
+            user.setActive_status(1);
+            //把code验证码清空，已经不需要了
+            user.setActive_code("");
+            userService.modifyUser(user);
+
+            return "activeSuccess";
+        }
+        return "login";
+    }
     /**
      * 登录
-     *
      * @param user 参数封装
      * @return Result
      */
@@ -64,10 +78,10 @@ public class controller {
         return userService.login(user);
     }
 
-@RequestMapping("/hello")
-public String hello(){
-        return "hello";
-}
+    @RequestMapping("/hello")
+    public String hello(){
+            return "hello";
+    }
     @RequestMapping("/getList")
     public List<DealInfo> getAllUser() {
         return userService.findAllDeal();

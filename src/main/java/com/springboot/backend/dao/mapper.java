@@ -12,14 +12,34 @@ import java.util.List;
 @ComponentScan
 @Service
 public interface mapper {
+    /**
+     * 查询所有的交易信息
+     * @return
+     */
     List<DealInfo> findAllDeal();
+
+    /**
+     * 查询所有的交易总额sum(DealNum)
+     * @return
+     */
     List<DealNum> findDealNum();
+
+    /**
+     * 获取所有交易的交易总数sum(dealamount)
+     * @return
+     */
     List<CAQuaryResult> getcarbonTradingeAmountChartData();
+
+    /**
+     * 取出所有的规划新闻(GuiHuaNews),下方法均同
+     * @return
+     */
     List<GuiHuaNews> findAllGHN();
     List<JinRongNews> findAllJRN();
     List<TanJiaoYi> findAllTJY();
     List<TanQiQuan> findAllTQQ();
     List<ZhengCeFaGui> findZCFG();
+
     void addDeal(DealInfo dataid);
 //    void addGHN(GuiHuaNews dataid);
 //    void addJRN(JinRongNews dataid);
@@ -32,9 +52,23 @@ public interface mapper {
 //    void deleteTJY(TanJiaoYiNews dataid);
 //    void deleteTQQ(TanQiQuanNews dataid);
 //    void deleteZCFG(ZhengCeFaGuiNews dataid);
-@Select("select indate ,ifnull(SUM(dealamount)/SUM(dealnum),0) as deal, ifnull(SUM(dealnum),0) as dealnum from data.dealinfo where housetext=#{city} GROUP BY indate")
+
+    /**
+     * 按城市名获取深圳的所有交易数据
+     * 单独写区别其他城市
+     * @param city
+     * @return
+     */
+    @Select("select indate ,ifnull(SUM(dealamount)/SUM(dealnum),0) as deal, ifnull(SUM(dealnum),0) as dealnum from data.dealinfo where housetext=#{city} GROUP BY indate")
 List<LineChart> getLineChartDatashenzhen(@Param("city") String city);
-@Select("select indate , deal, dealnum from data.dealinfo where housetext=#{city} ")
+
+    /**
+     * 按城市名获取城市的所有交易数据
+     * (indate,deal,dealnum)
+     * @param city
+     * @return
+     */
+    @Select("select indate , deal, dealnum from data.dealinfo where housetext=#{city} ")
 List<LineChart> getLineChartData(@Param("city") String city);
     void updateDeal(DealInfo dataid);
     /**
@@ -56,10 +90,27 @@ List<LineChart> getLineChartData(@Param("city") String city);
 //    @Select("select user.userId from user u where user.username = #{username} and password = #{password}")
     Integer login(User user);
 
-    @Select(value = "select u.username,u.password from user u where u.username=#{username}")
+    @Select(value = "select u.username,u.password,u.activeCode from user u where u.username=#{username}")
     @Results({@Result(property = "username",column = "username"),
-                    @Result(property = "password",column = "password")})
+                    @Result(property = "password",column = "password"),
+                    @Result(property = "active_code",column = "activeCode")})
     User findUserByName(@Param("username") String username);
+
+    /**
+     * 根据激活码查询用户
+     * @param activeCode
+     * @return
+     */
+    User selectUserByActiveCode(String activeCode);
+
+    /**
+     * 更新用户
+     * @param user
+     */
+    void update(User user);
+
+
+
 
 
 
