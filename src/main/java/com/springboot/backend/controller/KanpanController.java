@@ -1,24 +1,23 @@
 package com.springboot.backend.controller;
 
 import com.springboot.backend.bean.*;
-import com.springboot.backend.service.service;
-import com.springboot.backend.service.serviceImpl;
+import com.springboot.backend.service.KanpanServicelmpl;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-
-
+/**
+ * @Description: TODO
+ * @author: scott
+ * @date: 2020年11月01日 18:48
+ */
 @RestController
 @ResponseBody
-public class controller {
-
-
+public class KanpanController {
     @Resource
-    private serviceImpl userService;
+    private KanpanServicelmpl userService;
     @RequestMapping("/getLineChartData")
     public String getLineChartData() throws JSONException{
 
@@ -42,37 +41,10 @@ public class controller {
         object.put("FuJianLineChart",listFuJian);
         return object.toString();
     }
-    /**
-     * 注册
-     *
-     * @param user 参数封装
-     * @return Result
-     */
-    @PostMapping(value = "/regist")
-    public UserResult regist(@RequestBody User user) {
-        return userService.regist(user);
-    }
-
-    /**
-     * 登录
-     *
-     * @param user 参数封装
-     * @return Result
-     */
-    @PostMapping(value = "/login")
-    public UserResult login(@RequestBody User user) {
-        return userService.login(user);
-    }
-
-@RequestMapping("/hello")
-public String hello(){
-        return "hello";
-}
     @RequestMapping("/getList")
     public List<DealInfo> getAllUser() {
         return userService.findAllDeal();
     }
-
     //返回交易量
     @RequestMapping(value = "/getcarbonTradingeNumberChartData", method = RequestMethod.POST)
     public List<DealNum> getcarbonTradingNumberChartData() throws JSONException {
@@ -102,5 +74,4 @@ public String hello(){
         object.put("carbonTradingAmountPiedata", results);
         return results;
     }
-
 }
