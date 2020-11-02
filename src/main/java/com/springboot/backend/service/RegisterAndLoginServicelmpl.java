@@ -1,99 +1,24 @@
 package com.springboot.backend.service;
-
 import com.springboot.backend.bean.*;
-import com.springboot.backend.dao.mapper;
+import com.springboot.backend.dao.RegisterAndLoginMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.List;
-
+/**
+ * @Description: TODO
+ * @author: scott
+ * @date: 2020年11月01日 18:59
+ */
 @Service()
 @Repository
 @ComponentScan
-public class serviceImpl implements service{
-    public serviceImpl() {
-    }
+public class RegisterAndLoginServicelmpl implements RegisterAndLoginService {
     @Autowired
-    public mapper mapper;
-
-    @Resource
-    private MailService mailService;
-
-    public List<LineChart> getLineChartData(String city){
-        return mapper.getLineChartData(city);
-    }
-
-    @Override
-    public List<LineChart> getLineChartDatashenzhen(String city) {
-        return mapper.getLineChartDatashenzhen(city);
-    }
-
-    @Override
-    public List<DealInfo> findAllDeal() {
-        List<DealInfo> dealInfoList=mapper.findAllDeal();
-        return dealInfoList;
-    }
-
-    @Override
-    public void addDeal(DealInfo dataid) {
-
-    }
-
-    @Override
-    public void deleteDeal(DealInfo dataid) {
-
-    }
-
-    @Override
-    public void updateDeal(DealInfo dataid) {
-
-    }
-    @Override
-    public List<DealNum> getcarbonTradingNumberByCity(){
-        List<DealNum> dealNumList = mapper.findDealNum();
-        Integer amount = 0;
-        for(int i=0;i<dealNumList.size();i++){
-            amount = amount + dealNumList.get(i).getValue();
-        }
-        for(int i=0;i<dealNumList.size();i++){
-            DealNum deal = dealNumList.get(i);
-            deal.setRate(Double.valueOf(deal.getValue()/amount));
-        }
-        return dealNumList;
-    }
-
-    @Override
-    public List<CAQuaryResult> getcarbonTradingeAmountChartData() {
-        return mapper.getcarbonTradingeAmountChartData();
-    }
-
-    @Override
-    public List<GuiHuaNews> findAllGHN() {
-        return null;
-    }
-
-    @Override
-    public List<JinRongNews> findAllJRN() {
-        return null;
-    }
-
-    @Override
-    public List<TanJiaoYi> findAllTJY() {
-        return null;
-    }
-
-    @Override
-    public List<TanQiQuan> findAllTQQ() {
-        return null;
-    }
-
-    @Override
-    public List<ZhengCeFaGui> findZCFG() {
-        return null;
-    }
+    public RegisterAndLoginMapper mapper;
+    @Autowired
+    public  MailServiceImpl mailService;
 
     /**
      * 注册
