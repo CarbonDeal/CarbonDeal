@@ -11,7 +11,7 @@ import java.util.List;
  * @author: scott
  * @date: 2020年11月01日 18:55
  */
-@MapperScan("com.springboot.backend.dao.mapper")//扫描指定包下接口)
+@MapperScan("com.springboot.backend.dao.KanpanMapper")//扫描指定包下接口)
 @Service
 @Repository
 public interface KanpanService {

@@ -37,7 +37,7 @@ public class RegisterAndLoginServicelmpl implements RegisterAndLoginService {
             }else{
                 mapper.regist(user);
                 //获取激活码
-                String code = user.getActive_code();
+                String code = user.getActiveCode();
                 System.out.println("激活码:"+code);
                 //邮件主题
                 String subject = "Hello!"+user.getUsername()+" 来自CarbonDeal的激活邮件";

@@ -5,8 +5,8 @@ public class User {
     private Long   userId;
     private String password;
     private String email;
-    private String active_code;
-    private Integer active_status;
+    private String activeCode;
+    private Integer activeStatus;
 
 
     public String getUsername() {
@@ -41,19 +41,19 @@ public class User {
         this.email = email;
     }
 
-    public String getActive_code() {
-        return active_code;
+    public String getActiveCode() {
+        return activeCode;
     }
 
-    public void setActive_code(String active_code) {
-        this.active_code = active_code;
+    public void setActiveCode(String activeCode) {
+        this.activeCode = activeCode;
     }
 
-    public Integer getActive_status() {
-        return active_status;
+    public Integer getActiveStatus() {
+        return activeStatus;
     }
 
-    public void setActive_status(Integer active_status) {
-        this.active_status = active_status;
+    public void setActiveStatus(Integer activeStatus) {
+        this.activeStatus = activeStatus;
     }
 }
