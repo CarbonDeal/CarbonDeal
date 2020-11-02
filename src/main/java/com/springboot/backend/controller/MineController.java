@@ -1,0 +1,18 @@
+package com.springboot.backend.controller;
+
+import com.springboot.backend.service.MineServicelmpl;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+
+/**
+ * @Description: TODO
+ * @author: scott
+ * @date: 2020年11月01日 18:52
+ */
+@RestController
+@ResponseBody
+public class MineController {
+    @Resource
+    private MineServicelmpl userService;
+}
